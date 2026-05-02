@@ -40,64 +40,32 @@
   <pre id="output"></pre><span class="cursor"></span>
 
   <script>
-    const output = document.getElementById("output");
+function guessTheNumber() {
+  const secretNumber = Math.floor(Math.random() * 100) + 1;
+  let attempts = 0;
 
-    let secretNumber = Math.floor(Math.random() * 100) + 1;
-    let attempts = 0;
+  alert("Welcome to Guess the Number!\nI'm thinking of a number between 1 and 100. Can you guess it?");
 
-    const lines = [
-      "Welcome to Guess the Number!",
-      "I'm thinking of a number between 1 and 100. Can you guess it?",
-      ""
-    ];
+  while (true) {
+    let guess = prompt("Take a guess:");
 
-    const gameLines = [];
+    if (guess === null) return; // user cancelled
 
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
+    guess = Number(guess);
+    attempts++;
+
+    if (guess < secretNumber) {
+      alert("Too low! Try again.");
+    } else if (guess > secretNumber) {
+      alert("Too high! Try again.");
+    } else {
+      alert(`Congratulations! You guessed the number in ${attempts} attempts.`);
+      break;
     }
+  }
+}
 
-    function print(text) {
-      output.textContent += text + "\n";
-    }
-
-    async function typeLines(arr, delay = 700) {
-      for (let line of arr) {
-        print(line);
-        await sleep(delay);
-      }
-    }
-
-    async function gameLoop() {
-      await typeLines(lines, 800);
-
-      while (true) {
-        let guess = Number(prompt("Take a guess:"));
-        attempts++;
-
-        gameLines.push("Take a guess: " + guess);
-
-        if (guess < secretNumber) {
-          gameLines.push("Too low! Try again.\n");
-        } 
-        else if (guess > secretNumber) {
-          gameLines.push("Too high! Try again.\n");
-        } 
-        else {
-          gameLines.push(
-            "Congratulations! You guessed the number in " + attempts + " attempts."
-          );
-          break;
-        }
-
-        for (let i = gameLines.length - 2; i < gameLines.length; i++) {
-          print(gameLines[i]);
-          await sleep(500);
-        }
-      }
-    }
-
-    gameLoop();
-  </script>
+guessTheNumber();
+</script>
 </body>
 </html>
