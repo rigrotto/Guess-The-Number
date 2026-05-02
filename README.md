@@ -13,7 +13,7 @@ A simple command-line game where you try to guess a randomly generated number be
 * It keeps going until you guess the correct number
 * At the end, it shows how many attempts you took
 # How To Play
-Head to [the website](https://gtn.pages.dev/).
+Head to [the website](https://guess-the-number-1dp.pages.dev/).
 # Example Gameplay
 ```
 Welcome to Guess the Number!
